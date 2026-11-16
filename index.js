@@ -4,6 +4,10 @@ const db = require('./db');
 const app = express();
 app.use(express.json());
 
+
+
+
+
 app.get('/aula', async (req, res) => {
   try {
     const [aulas] = await db.query('SELECT * FROM aula');
@@ -12,6 +16,10 @@ app.get('/aula', async (req, res) => {
     return res.status(500).json({ erro: 'Erro interno ao listar aulas.', detalhes: error.message });
   }
 });
+
+
+
+
 
 app.post('/aula', async (req, res) => {
   const { disciplina, professor } = req.body;
@@ -33,6 +41,12 @@ app.post('/aula', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
 app.delete('/aula/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -53,6 +67,12 @@ app.delete('/aula/:id', async (req, res) => {
     return res.status(500).json({ erro: 'Erro interno ao deletar aula.', detalhes: error.message });
   }
 });
+
+
+
+
+
+
 
 app.post('/horario', async (req, res) => {
   const { dia_semana, hora_inicio, hora_fim, aula_id } = req.body;
@@ -83,6 +103,10 @@ app.post('/horario', async (req, res) => {
   }
 });
 
+
+
+
+
 app.get('/horario/:dia', async (req, res) => {
   const { dia } = req.params;
 
@@ -104,6 +128,11 @@ app.get('/horario/:dia', async (req, res) => {
     return res.status(500).json({ erro: 'Erro interno ao buscar horários.', detalhes: error.message });
   }
 });
+
+
+
+
+
 
 app.delete('/horario/:id', async (req, res) => {
   const { id } = req.params;
